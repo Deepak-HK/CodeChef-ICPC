@@ -32,9 +32,9 @@ int main()
     if(isNice) cout<<"\nThe matrix is nice already"<<endl;
     
     //Not compulsory to delete
-    for(i=0; i < order; i++) delete [] Matrix[i]; //deleteing columns
+    for(i=0; i < order; i++) delete [] Matrix[i];
     
-    delete [] Matrix; //deleting rows
+    delete [] Matrix; 
     
     return 0;
 }

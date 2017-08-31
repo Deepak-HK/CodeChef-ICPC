@@ -1,5 +1,4 @@
 #include<iostream>
-#include "clear.h"
 using namespace std;
 
 int PlanetID(int, int, int);

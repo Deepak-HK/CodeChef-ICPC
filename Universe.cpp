@@ -2,11 +2,15 @@
 using namespace std;
 
 int PlanetID(int, int, int);
+int ShortestPath(long **, int, int, int);
 
 int main()
 {
-	int Planets, Teleports, Queries, Planet_ID_1, Planet_ID_2, Universe_Num, Planet_Num, Path_1, Path_2, i, j;
+	int Planets, Teleports, Queries, Planet_ID_1, Planet_ID_2, Universe_Num, Planet_Num, Path_1, Path_2, *Path_length, i, j;
 	cin>>Planets>>Teleports>>Queries;
+
+	//Dynamic memory allocation of shortest path lengths
+	Path_length = new int [Queries];
 
 	//Dynamic memory allocation of Matrix
 	long **Matrix = new long *[Planets * Planets];
@@ -46,21 +50,37 @@ int main()
 		Matrix[Planet_ID_2 - 1][Planet_ID_1 - 1] = 1;
 	}
 
-	for(i=0; i < Planets * Planets; i++)
+	//Input Queries and finding shortest path
+	for(i=0; i < Queries; i++)
 	{
-		cout<<endl<<endl;
-		for(j=0; j < Planets * Planets; j++)
-		{
-			cout<<"\t"<<Matrix[i][j];
-		}
+		cin>>Planet_Num>>Universe_Num;
+		Planet_ID_1 = PlanetID(Planet_Num, Universe_Num, Planets);
+		cin>>Planet_Num>>Universe_Num;
+		Planet_ID_2 = PlanetID(Planet_Num, Universe_Num, Planets);
+		Path_length[i] = ShortestPath(Matrix, Planet_ID_1, Planet_ID_2, Planets);
+	}
+
+	//Displaying shortest path length for each Query
+	for(i=0; i < Queries; i++)
+	{
+		cout<<Path_length[i]<<"\n";
 	}
 
 	return 0;
 }
 
-int PlanetID(int Planet_Num, int Universe_Num, int Planets)
+inline int PlanetID(int Planet_Num, int Universe_Num, int Planets)
 {
 	int Planet_ID;
 	Planet_ID = ((Universe_Num - 1) * Planets) + Planet_Num;
 	return Planet_ID;
+}
+
+int ShortestPath(long **Matrix, int Planet_ID_1, int Planet_ID_2, int Planets)
+{
+	int i, Path_length = 0;
+
+	if(Matrix[Planet_ID_1 - 1][Planet_ID_2 - 1] == 1) Path_length++;
+
+	return Path_length;
 }

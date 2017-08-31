@@ -79,8 +79,9 @@ inline int PlanetID(int Planet_Num, int Universe_Num, int Planets)
 int ShortestPath(long **Matrix, int Planet_ID_1, int Planet_ID_2, int Planets)
 {
 	int i, Path_length = 0;
-
-	if(Matrix[Planet_ID_1 - 1][Planet_ID_2 - 1] == 1) Path_length++;
-
+	if(Matrix[Planet_ID_1 - 1][Planet_ID_2 - 1] == 1)
+	{
+		Path_length++;
+	}
 	return Path_length;
 }

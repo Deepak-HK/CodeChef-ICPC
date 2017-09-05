@@ -31,7 +31,7 @@ int main()
 
     delete [] Matrix;
 
-    cout<<endl<<changes<<endl;
+    cout<<changes;
 
     return 0;
 }
